@@ -1,0 +1,320 @@
+/* Loading Animation Credits to:  Frederik Christenensen
+on CodePen.io
+https://codepen.io/frederikchristensen/pen/xbdzl
+
+*/
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+
+  min-height: 100vh;
+
+
+}
+
+  .pg-container{
+    display:none;
+  }
+
+   @media screen and (max-width: 600px) {
+    .flex-container{
+      flex-wrap: wrap;
+    }
+  }
+
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+
+h1, h2, h3{
+   font-family: 'Oswald', sans-serif;
+
+}
+
+p {
+  font-size: 18px;
+  line-height: 20px;
+  max-width: 80%;
+  margin: 20px auto;
+
+}
+
+
+a {
+  margin-top: 15px;
+  color: currentColor;
+}
+a:hover{
+  cursor: pointer;
+}
+
+#left {
+  background: #F22613;
+  color: white;
+  font-size: 10px;
+}
+
+#left h1{
+  color: white
+  font-size: 90px;
+font-family: 'League Script', cursive;
+
+
+
+
+
+}
+#left a{
+
+
+}
+#left a:hover{
+  color:  #929292;
+
+
+}
+#right {
+  background: white;
+  color: black;
+}
+
+#right a{
+  color:#b2b2b2;
+}
+
+#right a:hover{
+  color:  #666666;
+
+
+}
+
+
+ul{
+  padding: 0;
+
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 5%;
+  font-size: 15px;
+
+}
+
+
+
+#overlay {
+  background:#fff;
+  height:100%;
+  opacity:1;
+}
+
+
+#overlay.hidden {
+  opacity:0;
+}
+
+#loadWrapper {
+  width:330px;
+  height:90px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-45px;
+  margin-left:-165px;
+}
+
+#logo {
+  font-size:2em;
+  font-weight:bold;
+  text-align:center;
+  display:block;
+  position:absolute;
+  top:50%;
+  width:100%;
+  margin-top:-0.5em;
+  z-index:1;
+}
+
+#cont1, #cont2{
+  position:relative;
+  width:50%;
+  height:100%;
+  float:left;
+}
+
+/* setup */
+
+.topStroke, .bottomStroke, .leftStroke, .rightStroke, .leftStrokeMaskTop, .leftStrokeMaskBottom, .rightStrokeMaskTop, .rightStrokeMaskBottom {
+  background:#000;
+  position:absolute;
+}
+
+.topStroke, .bottomStroke{
+  height:3px;
+  z-index:2;
+}
+
+.leftStroke, .rightStroke, .leftStrokeMaskTop, .leftStrokeMaskBottom, .rightStrokeMaskTop, .rightStrokeMaskBottom {
+  width:3px;
+  height:100%;
+}
+
+.topStroke {
+  top:0;
+  left:0;
+}
+
+.bottomStroke {
+  bottom:0;
+  left:0;
+}
+
+#cont2.topStroke, #cont2 .bottomStroke {
+  left:auto;
+  right:0;
+}
+
+.leftStroke {
+  top:0;
+  left:0;
+}
+
+.rightStroke {
+  top:0;
+  right:0;
+}
+
+.leftStrokeMaskTop, .leftStrokeMaskBottom, .rightStrokeMaskTop, .rightStrokeMaskBottom {
+  background:#fff;
+  top:0;
+  left:0;
+  z-index:3;
+}
+
+.rightStrokeMaskTop, .rightStrokeMaskBottom {
+  left:auto;
+  right:0;
+}
+
+/* keyframes */
+
+@-webkit-keyframes pulsate {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1.0; }
+}
+
+@-moz-keyframes pulsate {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1.0; }
+}
+
+@-o-keyframes pulsate {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1.0; }
+}
+
+@keyframes pulsate {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1.0; }
+}
+
+@-webkit-keyframes destroy {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+@-moz-keyframes destroy {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+@-o-keyframes destroy {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+@keyframes destroy {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+/* transitions */
+
+#overlay, #loadWrapper {
+    transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+}
+
+#logo {
+  opacity:1;
+  transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+}
+
+#logo.active {
+  opacity:0.5;
+  -webkit-animation: pulsate 1.75s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-animation-iteration-count: infinite;
+}
+
+.leftStrokeMaskTop, .rightStrokeMaskTop {
+  top:50%;
+  transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+}
+
+.leftStrokeMaskBottom, .rightStrokeMaskBottom {
+  top:-50% !important;
+  transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+}
+
+.topStroke, .bottomStroke {
+  width:0%;
+  transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  -webkit-transition:all 1s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+}
+
+.loaded .topStroke, .loaded .bottomStroke {
+  width:100%;
+  transition-delay: 1s;
+}
+
+.loaded .leftStrokeMaskTop, .loaded .rightStrokeMaskTop {
+  top:100%;
+}
+
+.loaded .leftStrokeMaskBottom, .loaded .rightStrokeMaskBottom {
+  top:-100% !important;
+}
+
+.hide {
+  opacity:0 !important;
+}
+
+
+.top-container{
+  display: none;
+
+
+
+}
